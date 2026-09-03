@@ -10,6 +10,7 @@ export function Field({
   required,
   icon,
   list,
+  value,
   onChange,
 }: {
   label: string;
@@ -22,6 +23,8 @@ export function Field({
   icon?: ReactNode;
   /** Optional <datalist> id for address suggestions. */
   list?: string;
+  /** Makes the field controlled (used by address auto-fill). */
+  value?: string;
   onChange?: (value: string) => void;
 }) {
   return (
@@ -33,9 +36,11 @@ export function Field({
         autoComplete={autoComplete}
         list={list}
         placeholder=" "
+        {...(value !== undefined ? { value } : {})}
         onChange={onChange ? (e) => onChange(e.currentTarget.value) : undefined}
         className={`peer h-[52px] w-full rounded-xl border border-co-border bg-co-bg px-3 pt-4 text-sm text-co-fg focus:border-co-accent focus:outline-none focus:ring-1 focus:ring-co-accent ${icon ? "pr-11" : ""}`}
       />
+
 
       <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-co-muted transition-all peer-focus:top-2.5 peer-focus:translate-y-0 peer-focus:text-[11px] peer-[&:not(:placeholder-shown)]:top-2.5 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[11px]">
         {label}
