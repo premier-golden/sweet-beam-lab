@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { Lock, Truck, ShieldCheck, ShoppingBag, Loader2, CheckCircle2, Search, CircleHelp } from "lucide-react";
+import { Lock, Truck, ShieldCheck, ShoppingBag, Loader2, CheckCircle2, CircleHelp } from "lucide-react";
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { submitOrder } from "@/lib/order.functions";
 import { tiktokIdentify, tiktokTrack } from "@/lib/tiktok";
@@ -16,6 +16,7 @@ import {
 import logoAsset from "@/assets/nutrition-geeks-logo.png.asset.json";
 import { CheckoutSummary } from "@/components/checkout/CheckoutSummary";
 import { CooudPaymentElement } from "@/components/checkout/CooudPaymentElement";
+import { AddressAutocomplete } from "@/components/checkout/AddressAutocomplete";
 import {
   Field,
   SelectField,
@@ -64,6 +65,8 @@ function CheckoutPage() {
   const [orderNumber, setOrderNumber] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [postcode, setPostcode] = useState("");
+  const [street, setStreet] = useState("");
+  const [city, setCity] = useState("");
   const [email, setEmail] = useState("");
   // Cooud requires customer_email on the confirm call, so the payment element
   // is only mounted once a valid email is present.
@@ -206,12 +209,17 @@ function CheckoutPage() {
                 <Field label="First name" name="firstName" required autoComplete="given-name" />
                 <Field label="Last name" name="lastName" required autoComplete="family-name" />
               </div>
-              <Field
+              <AddressAutocomplete
                 label="Address"
                 name="street"
                 required
-                autoComplete="street-address"
-                icon={<Search className="size-4" strokeWidth={1.75} aria-hidden="true" />}
+                value={street}
+                onValueChange={setStreet}
+                onSelect={(s) => {
+                  setStreet(s.street || s.label);
+                  if (s.city) setCity(s.city);
+                  if (s.postcode) setPostcode(s.postcode);
+                }}
               />
               <Field
                 label="Apartment, suite, etc. (optional)"
@@ -219,15 +227,24 @@ function CheckoutPage() {
                 autoComplete="address-line2"
               />
               <div className="grid grid-cols-2 gap-3">
-                <Field label="City" name="city" required autoComplete="address-level2" />
+                <Field
+                  label="City"
+                  name="city"
+                  required
+                  autoComplete="address-level2"
+                  value={city}
+                  onChange={setCity}
+                />
                 <Field
                   label="Postcode"
                   name="postalCode"
                   required
                   autoComplete="postal-code"
+                  value={postcode}
                   onChange={setPostcode}
                 />
               </div>
+
               <Field
                 label="Phone (optional)"
                 type="tel"
