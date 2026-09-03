@@ -206,12 +206,17 @@ function CheckoutPage() {
                 <Field label="First name" name="firstName" required autoComplete="given-name" />
                 <Field label="Last name" name="lastName" required autoComplete="family-name" />
               </div>
-              <Field
+              <AddressAutocomplete
                 label="Address"
                 name="street"
                 required
-                autoComplete="street-address"
-                icon={<Search className="size-4" strokeWidth={1.75} aria-hidden="true" />}
+                value={street}
+                onValueChange={setStreet}
+                onSelect={(s) => {
+                  setStreet(s.street || s.label);
+                  if (s.city) setCity(s.city);
+                  if (s.postcode) setPostcode(s.postcode);
+                }}
               />
               <Field
                 label="Apartment, suite, etc. (optional)"
@@ -219,15 +224,24 @@ function CheckoutPage() {
                 autoComplete="address-line2"
               />
               <div className="grid grid-cols-2 gap-3">
-                <Field label="City" name="city" required autoComplete="address-level2" />
+                <Field
+                  label="City"
+                  name="city"
+                  required
+                  autoComplete="address-level2"
+                  value={city}
+                  onChange={setCity}
+                />
                 <Field
                   label="Postcode"
                   name="postalCode"
                   required
                   autoComplete="postal-code"
+                  value={postcode}
                   onChange={setPostcode}
                 />
               </div>
+
               <Field
                 label="Phone (optional)"
                 type="tel"
