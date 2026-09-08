@@ -205,10 +205,10 @@ const FAQS = [
   },
 ];
 
-function TitleWithIcon({ icon: Icon, text }: { icon: LucideIcon; text: string }) {
+function TitleWithEmoji({ emoji, text }: { emoji: string; text: string }) {
   return (
     <span className="flex items-center gap-2.5">
-      <Icon className="size-[18px] shrink-0 text-teal" strokeWidth={1.75} aria-hidden="true" />
+      <span aria-hidden="true">{emoji}</span>
       {text}
     </span>
   );
@@ -248,11 +248,11 @@ function ProductPage() {
             </a>
           </div>
           <p className="flex-1 inline-flex items-center justify-center gap-2 text-center font-medium">
-            <Gift className="size-4 shrink-0" strokeWidth={1.75} aria-hidden="true" />
-            FREE Gift When You Spend £22+
+            <span aria-hidden="true">🎁</span>FREE Gift When You Spend £22+
           </p>
           <button className="hidden items-center gap-1 font-medium md:flex">
-            (GBP £) <ChevronDown className="size-4" />
+            <span className="sr-only">Country/region</span>(GBP £){" "}
+            <ChevronDown className="size-4" />
           </button>
         </div>
       </div>
@@ -260,19 +260,13 @@ function ProductPage() {
       {/* Header */}
       <header className="border-b border-border bg-background">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5">
-          <button aria-label="Search" className="text-ink md:order-1">
-            <Search className="size-5" />
-          </button>
-          <a href="/" className="md:order-2">
+          <a href="/" className="mx-auto">
             <img
               src={`${CDN}/Asset_5_5849ac1d-6dd2-4bb4-b9bb-62d76a21ee5d.svg?v=1719328855`}
               alt="Nutrition Geeks"
               className="h-9 w-auto md:h-12"
             />
           </a>
-          <div className="flex items-center gap-4 md:order-3">
-            <button aria-label="Open menu"><Menu className="size-5" /></button>
-          </div>
         </div>
       </header>
 
@@ -314,8 +308,7 @@ function ProductPage() {
             </div>
 
             <p className="mt-5 flex items-center gap-2 font-semibold">
-              <Hourglass className="size-4 shrink-0 text-teal" strokeWidth={1.75} aria-hidden="true" />
-              1 month supply (420g)
+              <span aria-hidden="true">⏳</span>1 month supply (420g)
             </p>
             <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
               The all-natural, triple-filtered premium collagen powder delivering 12.6g of protein
@@ -324,20 +317,16 @@ function ProductPage() {
 
             <ul className="mt-5 space-y-2.5 text-[15px]">
               {[
-                { icon: CupSoda, text: "Powder-based for easy mixing" },
-                { icon: Coffee, text: "Dissolves effortlessly into hot drinks & food" },
+                { emoji: "🥤", text: "Powder-based for easy mixing" },
+                { emoji: "☕", text: "Dissolves effortlessly into hot drinks & food" },
                 {
-                  icon: Sparkles,
+                  emoji: "✨",
                   text: "Support skin health with Biotin Growth+ (free with 3-month bundle)*",
                 },
-                { icon: Microscope, text: "Triple-filtered for supreme purity and a neutral taste" },
-              ].map(({ icon: Icon, text }) => (
-                <li key={text} className="flex items-start gap-2.5">
-                  <Icon
-                    className="mt-0.5 size-[18px] shrink-0 text-teal"
-                    strokeWidth={1.75}
-                    aria-hidden="true"
-                  />
+                { emoji: "👨‍🔬", text: "Triple-filtered for supreme purity and a neutral taste" },
+              ].map(({ emoji, text }) => (
+                <li key={text} className="flex items-start gap-2">
+                  <span aria-hidden="true">{emoji}</span>
                   <span>{text}</span>
                 </li>
               ))}
@@ -447,52 +436,33 @@ function ProductPage() {
             </div>
 
 
-            <div className="mt-6 flex items-center gap-3 rounded-2xl border border-border p-4">
-              <img
-                src={`${CDN}/trustpilot-2.svg?crop=center&height=76&v=1720630690&width=76`}
-                alt="Trustpilot"
-                className="size-10"
-              />
-              <div className="text-sm">
-                <p className="font-semibold">4,000,000+ customers &amp; counting</p>
-                <p className="text-muted-foreground">Rated 'Excellent' on Trustpilot</p>
-              </div>
-            </div>
-
             <div className="mt-8 divide-y divide-border border-y border-border">
               <AccordionItem
-                title={<TitleWithIcon icon={HeartPulse} text="Health Benefits of Collagen Glow Up Powder" />}
-                defaultOpen
+                title={
+                  <TitleWithEmoji emoji="🧘‍♀️" text="Health Benefits of Collagen Glow Up Powder" />
+                }
               >
-                {BENEFITS.map(({ icon: Icon, ...b }) => (
-                  <div key={b.title} className="flex items-start gap-3">
-                    <Icon
-                      className="mt-1 size-[18px] shrink-0 text-teal"
-                      strokeWidth={1.75}
-                      aria-hidden="true"
-                    />
-                    <p>
-                      <span className="font-semibold text-ink">{b.title}</span> {b.body}
+                {BENEFITS.map((b) => (
+                  <div key={b.title}>
+                    <p className="font-semibold text-ink">
+                      <span aria-hidden="true">{b.emoji}</span> {b.title}
                     </p>
+                    <p className="mt-1">{b.body}</p>
                   </div>
                 ))}
                 <p className="text-xs">*Biotin Growth+ is a separate product.</p>
               </AccordionItem>
-              <AccordionItem title={<TitleWithIcon icon={FlaskConical} text="Our Geeky Formula" />}>
-                {FORMULA.map(({ icon: Icon, ...f }) => (
-                  <div key={f.title} className="flex items-start gap-3">
-                    <Icon
-                      className="mt-1 size-[18px] shrink-0 text-teal"
-                      strokeWidth={1.75}
-                      aria-hidden="true"
-                    />
-                    <p>
-                      <span className="font-semibold text-ink">{f.title}</span> {f.body}
+              <AccordionItem title={<TitleWithEmoji emoji="🔬" text="Our Geeky Formula" />}>
+                {FORMULA.map((f) => (
+                  <div key={f.title}>
+                    <p className="font-semibold text-ink">
+                      <span aria-hidden="true">{f.emoji}</span> {f.title}
                     </p>
+                    <p className="mt-1">{f.body}</p>
                   </div>
                 ))}
               </AccordionItem>
-              <AccordionItem title={<TitleWithIcon icon={Apple} text="Nutritional Information" />}>
+              <AccordionItem title={<TitleWithEmoji emoji="🍎" text="Nutritional Information" />}>
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-sm">
                     <thead>
@@ -529,9 +499,14 @@ function ProductPage() {
                   <span className="font-semibold text-ink">Ingredients:</span> Hydrolysed Bovine
                   Collagen Peptides. Not suitable for vegetarians or vegans.
                 </p>
-                <p className="text-xs">† Essential Amino Acids</p>
+                <p className="text-xs">
+                  * Nutrient Reference Value AKA Recommended Daily Intake
+                  <br />
+                  ** Nutrient Reference Value Not Established
+                  <br />† Essential Amino Acids
+                </p>
               </AccordionItem>
-              <AccordionItem title={<TitleWithIcon icon={ClipboardList} text="Directions & Information" />}>
+              <AccordionItem title={<TitleWithEmoji emoji="📋" text="Directions & Information" />}>
                 <p>
                   <span className="font-semibold text-ink">Directions:</span> Add 2 flat tablespoons
                   (14g) to food or drinks once per day. Mix into hot drinks such as coffee, or add to
@@ -539,17 +514,17 @@ function ProductPage() {
                 </p>
                 <p>
                   <span className="font-semibold text-ink">Supply:</span> Each pack contains 420g (1
-                  month supply) of Collagen Glow Up Powder. That's the equivalent to just £16.99 GBP
+                  month supply) of Collagen Glow Up Powder. That's the equivalent to just £17.99 GBP
                   per month!
                 </p>
               </AccordionItem>
-              <AccordionItem title={<TitleWithIcon icon={Package} text="Shipping Information" />}>
+              <AccordionItem title={<TitleWithEmoji emoji="📦" text="Shipping Information" />}>
                 <p>
                   All UK orders qualify for free, tracked UK delivery. Delivery takes 1-2 days.
                 </p>
                 <p>
-                  Orders from outside the UK will vary depending on your location. Please review our
-                  delivery policy for full delivery details.
+                  For orders from outside the UK will vary depending on your location. Please review
+                  our delivery policy for full delivery details.
                 </p>
               </AccordionItem>
             </div>
@@ -593,9 +568,17 @@ function ProductPage() {
           <div className="mt-8 space-y-3">
             {FAQS.map((f) => (
               <AccordionItem key={f.q} title={f.q} variant="card">
-                <p>{f.a}</p>
+                {f.a.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
               </AccordionItem>
             ))}
+          </div>
+          <div className="mt-8 text-center">
+            <p className="font-semibold">Can't find the answer you're looking for?</p>
+            <a href="#" className="mt-2 inline-block underline underline-offset-4">
+              💬 Click here to ask us!
+            </a>
           </div>
         </section>
       </main>
@@ -662,7 +645,7 @@ function ProductPage() {
 
             <div>
               <h4 className="text-lg font-extrabold">Get In Touch</h4>
-              <p className="mt-4 text-sm">customerservices@nutriongeeks.co</p>
+              <p className="mt-4 text-sm">customerservices@nutritiongeeks.co</p>
               <div className="mt-6 flex items-center gap-5">
                 <a href="https://www.facebook.com/nutritiongeeksofficial/" aria-label="Facebook" target="_top" rel="external">
                   <Facebook className="h-6 w-6" strokeWidth={1.75} />
@@ -678,17 +661,17 @@ function ProductPage() {
               </div>
               <div className="mt-6 flex max-w-xs flex-wrap gap-2">
                 {[
-                  "AMEX",
+                  "American Express",
                   "Apple Pay",
-                  "Diners",
+                  "Diners Club",
                   "Discover",
-                  "G Pay",
+                  "Google Pay",
                   "Maestro",
                   "Mastercard",
                   "PayPal",
-                  "Shop",
-                  "UnionPay",
-                  "VISA",
+                  "Shop Pay",
+                  "Union Pay",
+                  "Visa",
                 ].map((p) => (
                   <span
                     key={p}
@@ -713,7 +696,7 @@ function ProductPage() {
               </a>
             </p>
             <button className="flex items-center gap-2 self-start">
-              (GBP £) <ChevronDown className="h-4 w-4" strokeWidth={2} />
+              <span className="sr-only">Country/region</span>(GBP £) <ChevronDown className="h-4 w-4" strokeWidth={2} />
             </button>
           </div>
         </div>
