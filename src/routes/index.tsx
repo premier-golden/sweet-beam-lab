@@ -67,6 +67,8 @@ const CDN = "https://www.nutritiongeeks.co/cdn/shop/files";
 const GALLERY = [
   `${CDN}/collagen-glow-up-powder-nutrition-geeks-image-position-3_9167bbb8.png?v=1779640309&width=900`,
   `${CDN}/collagen-glow-up-powder-nutrition-geeks-image-position-4.png?v=1784565383&width=900`,
+  `${CDN}/collagen-glow-up-powder-nutrition-geeks-image-position-5.png?v=1784565383&width=900`,
+  `${CDN}/collagen-glow-up-powder-nutrition-geeks-image-position-7.png?v=1784565397&width=900`,
   `${CDN}/collagen-glow-up-powder-nutrition-geeks-image-position-8.png?v=1784565397&width=900`,
   `${CDN}/collagen-glow-up-powder-nutrition-geeks-image-position-9.png?v=1777739465&width=900`,
 ];
@@ -74,44 +76,39 @@ const GALLERY = [
 // Packs live in @/lib/offer so the Checkout can read the same data.
 
 
-const BENEFITS: { icon: LucideIcon; title: string; body: string }[] = [
+const BENEFITS: { emoji: string; title: string; body: string }[] = [
   {
-    icon: Activity,
+    emoji: "🏃‍♀️",
     title: "High-Protein Nutrition",
-    body: "Collagen Glow Up is over 90% protein, delivering 12.6g per serving to support your daily protein intake as part of a balanced diet.",
+    body: "Collagen Glow Up is over 90% protein, delivering 12.6g per serving as part of your daily diet.",
   },
   {
-    icon: Sparkles,
-    title: "Skin, Hair & Nails",
-    body: "Type I & III collagen peptides provide the building blocks your body naturally uses, and our Biotin Growth+ gift supports skin health.*",
+    emoji: "🌟",
+    title: "Skin Structure",
+    body: "Collagen is the most abundant protein found naturally in the human body and accounts for approximately 70–80% of the skin's connective tissue layer (the dermis). Collagen production naturally declines from early adulthood, typically from the mid-20s, meaning existing collagen fibres are renewed less tightly and less regularly over time, reflecting normal age-related changes in protein structure.",
   },
   {
-    icon: Coffee,
-    title: "Effortlessly Mixable",
-    body: "Virtually odourless and tasteless, it dissolves into coffee, tea, porridge, smoothies or yogurt without changing the flavour.",
-  },
-  {
-    icon: Leaf,
-    title: "All-Natural Formula",
-    body: "Sourced from grass-fed, pasture-raised Brazilian cattle. No artificial additives, no added sugar and free from common allergens.",
+    emoji: "💇‍♀️",
+    title: "Stronger Hair & Nails",
+    body: "When you stock up on 3 or more packs of Collagen you'll get a free 3 month supply of Biotin Growth+*. The biotin supplied with collagen contributes to naturally stronger and healthy hair & nails.",
   },
 ];
 
-const FORMULA: { icon: LucideIcon; title: string; body: string }[] = [
+const FORMULA: { emoji: string; title: string; body: string }[] = [
   {
-    icon: FlaskConical,
+    emoji: "🧪",
     title: "Triple Filtered Collagen",
-    body: "Our collagen is crafted through a careful Triple Filtering Process. We select premium raw materials, process the best batches in the UK, and test for protein, amino acids and sensory quality — for collagen that's virtually odourless and tasteless.",
+    body: "Our collagen is crafted through a careful Triple Filtering Process. We select premium raw materials, process the best batches in the UK, and test for protein, amino acids, and sensory quality. The result is the highest quality collagen in the UK, that's virtually odourless & tasteless.",
   },
   {
-    icon: Microscope,
+    emoji: "🧑‍🔬",
     title: "Expert-Led Development",
     body: "We've worked alongside the UK's leading collagen experts with over 40 years of industry experience to provide you with the most premium level of collagen available in the UK.",
   },
   {
-    icon: Droplets,
+    emoji: "🌱",
     title: "Pristine and Pure",
-    body: "Sourced from grass-fed, pasture-raised Brazilian cattle, we offer an all-natural solution, free from artificial additives and common allergens.",
+    body: "Sourced from grass-fed, pasture-raised Brazilian cattle, we offer an all-natural solution and free from artificial additives and common allergens.",
   },
 ];
 
@@ -150,23 +147,61 @@ const AMINO: [string, string, string][] = [
 const FAQS = [
   {
     q: "Why doesn't Collagen Glow Up contain vitamin C?",
-    a: "Our previous version included vitamin C and hyaluronic acid, but we found these ingredients negatively impacted taste, dissolvability and effectiveness. The current version features a higher-grade, triple-filtered collagen that's purer, cleaner and more effective on its own. Vitamin C does not improve collagen absorption — it assists your body's natural collagen formation, which is a separate process.",
+    a: [
+      "Our previous version of Collagen Glow Up included vitamin C and hyaluronic acid.",
+      "However, we found that these ingredients negatively impacted the taste, dissolvability and effectiveness. That's why, in response to customer feedback and product testing, we updated our formulation last year.",
+      "The current version features a higher-grade, triple-filtered collagen that's purer, cleaner, and more effective on its own.",
+      "When vitamin C is combined with collagen in powdered form, it can cause unpleasant smells and changes in texture, breakdown of collagen proteins over time, reduced effectiveness due to exposure to moisture, oxygen, heat, and pH fluctuations.",
+      "These issues are common when Vitamin C is mixed with powder unless special (and often expensive) stabilisation techniques are used—like microencapsulation or individual packaging. We prefer to keep things simple, honest, and effective.",
+      "Vitamin C does not improve the absorption of collagen, but rather assists with your body's natural collagen formation. These are two separate biological processes, with absorption referring to how collagen peptides are taken up through your digestive system into your bloodstream, and formation referring to your body's natural process of making new collagen proteins, which vitamin C assists with.",
+      "It's also important to stay well hydrated, as hydration plays a key role in how your body processes collagen.",
+      "Does the product still work? Absolutely. We sell over 250,000 packs of Collagen Glow Up every month, and the results speak for themselves. Thousands of customers continue to see and feel the difference!",
+    ],
   },
   {
     q: "Are there any side effects associated with taking collagen powder?",
-    a: "Collagen powder is a source of dietary protein and is generally well tolerated as part of a balanced diet. As with many protein-rich foods, some people may experience mild digestive discomfort when first introducing it. If you have specific dietary requirements, allergies or medical concerns, consult a healthcare professional.",
+    a: [
+      "Collagen powder is a source of dietary protein and is generally well tolerated when consumed as part of a balanced diet. As with many protein-rich foods, some individuals may experience mild digestive discomfort, such as bloating or a feeling of fullness, particularly when first introducing it.",
+      "If you have specific dietary requirements, allergies, or medical concerns, it's advisable to consult a healthcare professional before making changes to your diet.",
+      "Our collagen protein powder contains no added artificial additives and is free from common allergens.",
+    ],
   },
   {
     q: "Can you consume too much collagen?",
-    a: "Follow the suggested serving guidance and include collagen as part of your normal daily food and drink routine. Very large amounts of any protein-rich food may lead to mild digestive discomfort such as bloating or a feeling of fullness.",
+    a: [
+      "Collagen powder is a source of dietary protein and should be consumed as part of a balanced diet. As with any protein-rich food, consuming it in very large amounts may lead to mild digestive discomfort, such as bloating or a feeling of fullness.",
+      "It's best to follow the suggested serving guidance and incorporate collagen as part of your normal daily food and drink routine. If you have specific dietary requirements or health concerns, you may wish to consult a healthcare professional before making changes to your diet.",
+    ],
   },
   {
-    q: "Why we use Type I and III collagen",
-    a: "Type I collagen makes up around 90% of the body's total collagen and forms the structural framework of skin, tendons, ligaments and bones. Type III is found in skin, blood vessels and organs, and in nature the two often work together in the same tissues — so we combine both.",
+    q: "Why We Use Type I and III Collagen",
+    a: [
+      "Our formulation combines Type I and Type III collagen, reflecting the natural composition found in the human body.",
+      "Type I collagen constitutes approximately 90% of the body's total collagen content and forms the structural framework of skin, tendons, ligaments, and bones. This essential protein is a fundamental component of the skin's support structure.",
+      "We've paired it with Type III collagen because in nature, these two types often work together in the same tissues. Type III collagen is found in skin, blood vessels, and organs.",
+      "The Type I and III combination offers a comprehensive approach, providing the building blocks that contribute to the body's most abundant structural proteins, targeting multiple body systems simultaneously.",
+    ],
   },
   {
-    q: "How long until I see results?",
-    a: "Most customers take Collagen Glow Up daily and report noticing a difference after consistent use over several weeks. For best results, use it every day as part of a balanced diet and stay well hydrated.",
+    q: "Is Collagen Glow Up suitable for vegetarians or vegans?",
+    a: [
+      "No, Collagen Glow Up is not suitable for vegetarians or vegans. It contains hydrolysed collagen peptides sourced from bovine (cow) hides.",
+      "Collagen peptides are derived from animal sources and are naturally present in connective tissues. This product provides Type I and Type III collagen, which are commonly found in the body.",
+      "There are plant-based alternatives available, but these do not contain collagen, as collagen is not found in plant sources.",
+    ],
+  },
+  {
+    q: "How should I use collagen powder?",
+    a: [
+      "Add two flat tablespoons of collagen powder to food or drinks as part of your daily routine. It can be mixed into water, juice, smoothies, coffee or tea, and works well in both hot and cold options.",
+      "Collagen Glow Up is virtually odourless and tasteless, making it easy to include in a variety of everyday meals and drinks.",
+    ],
+  },
+  {
+    q: "How does Collagen interact with other supplements/medications?",
+    a: [
+      "Collagen powder is a source of dietary protein and is generally suitable to include as part of a balanced diet. If you have any underlying health conditions or are taking prescribed medication, it's best to speak to a healthcare professional before making changes to your diet.",
+    ],
   },
 ];
 
