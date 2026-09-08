@@ -78,7 +78,7 @@ export const REVIEWS: Review[] = [
   { name: "Bethan L.", place: "Swindon, GB", date: "18/06/26", rating: 5, verified: "verified", title: "Highly recommend", body: "Highly recommend to anyone on the fence. Just give it eight weeks." },
 ];
 
-export const REVIEW_TOTAL = "8,065";
+export const REVIEW_TOTAL = "7,475";
 export const REVIEW_AVERAGE = 4.6;
 
 const CDN = "https://www.nutritiongeeks.co/cdn/shop/files";
