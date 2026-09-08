@@ -1,30 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  Star,
-  Gift,
-  Search,
-  Menu,
-  
-  ChevronDown,
-  Check,
-  Activity,
-  Sparkles,
-  Coffee,
-  Leaf,
-  FlaskConical,
-  Microscope,
-  Droplets,
-  HeartPulse,
-  Apple,
-  ClipboardList,
-  Package,
-  Hourglass,
-  CupSoda,
-  Facebook,
-  Instagram,
-  type LucideIcon,
-} from "lucide-react";
+import { Star, Gift, ChevronDown, Facebook, Instagram } from "lucide-react";
 import { Marquee } from "@/components/site/Marquee";
 import { AccordionItem } from "@/components/site/Accordion";
 import { Reviews } from "@/components/site/Reviews";
