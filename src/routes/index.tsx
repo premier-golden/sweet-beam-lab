@@ -349,36 +349,47 @@ function ProductPage() {
                     <button
                       onClick={() => setSelected(b.id)}
                       aria-pressed={isSelected}
-                      className={`w-full rounded-2xl border-2 p-4 text-left transition-colors ${
+                      className={`w-full overflow-hidden rounded-2xl border-2 text-left transition-colors ${
                         isSelected
-                          ? "border-brand bg-brand-soft"
-                          : "border-border bg-card hover:border-brand/40"
+                          ? "border-ink bg-brand-soft"
+                          : "border-border bg-muted/40 hover:border-brand/40"
                       }`}
                     >
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-4 p-4">
                         <img src={b.image} alt={b.title} className="size-16 object-contain" />
                         <div className="flex-1">
                           <div className="flex flex-wrap items-center gap-2">
-                            <span className="font-bold">{b.title}</span>
-                            <span className="rounded-md bg-background/70 px-2 py-0.5 text-xs font-medium text-muted-foreground">
+                            <span className="text-lg font-bold">{b.title}</span>
+                            <span
+                              className={`rounded-md px-2 py-0.5 text-xs font-medium ${
+                                isSelected
+                                  ? "bg-background/70 text-ink"
+                                  : "bg-background text-muted-foreground"
+                              }`}
+                            >
                               {b.perPack}
                             </span>
                           </div>
                           <p className="mt-1 text-sm text-muted-foreground">{b.supply}</p>
                         </div>
                         <div className="text-right">
-                          <p className="font-bold">{b.price}</p>
+                          <p className="text-lg font-extrabold">{b.price}</p>
                           <p className="text-sm text-muted-foreground line-through">{b.compare}</p>
                         </div>
                       </div>
 
                       {b.gifts.length > 0 && (
-                        <div className="mt-4 space-y-2 border-t border-border/70 pt-3">
+                        <div className="divide-y divide-background/15">
                           {b.gifts.map((g) => (
-                            <div key={g.label} className="flex items-center gap-3 text-sm">
-                              <img src={g.image} alt="" className="size-9 object-contain" />
-                              <span className="flex-1 font-medium">{g.label}</span>
-                              <span className="text-muted-foreground line-through">{g.value}</span>
+                            <div
+                              key={g.label}
+                              className={`flex items-center gap-3 px-4 py-2.5 text-sm ${
+                                isSelected ? "bg-ink text-background" : "bg-muted text-ink"
+                              }`}
+                            >
+                              <img src={g.image} alt="" className="size-8 object-contain" />
+                              <span className="flex-1 font-semibold">{g.label}</span>
+                              <span className="text-xs line-through opacity-70">{g.value}</span>
                             </div>
                           ))}
                         </div>
