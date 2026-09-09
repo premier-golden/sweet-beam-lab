@@ -6,6 +6,7 @@ import { AccordionItem } from "@/components/site/Accordion";
 import { Reviews } from "@/components/site/Reviews";
 import { BUNDLES, parseAmount } from "@/lib/offer";
 import { tiktokTrack } from "@/lib/tiktok";
+import heroAsset from "@/assets/collagen-hero.png.asset.json";
 
 
 export const Route = createFileRoute("/")({
@@ -41,6 +42,7 @@ export const Route = createFileRoute("/")({
 const CDN = "https://www.nutritiongeeks.co/cdn/shop/files";
 
 const GALLERY = [
+  heroAsset.url,
   `${CDN}/collagen-glow-up-powder-nutrition-geeks-image-position-3_9167bbb8.png?v=1779640309&width=900`,
   `${CDN}/collagen-glow-up-powder-nutrition-geeks-image-position-4.png?v=1784565383&width=900`,
   `${CDN}/collagen-glow-up-powder-nutrition-geeks-image-position-5.png?v=1784565383&width=900`,
