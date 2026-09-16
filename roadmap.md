@@ -1,4 +1,4 @@
 # Roadmap
 
-- [ ] Conectar a Stripe diretamente usando as chaves pública e secreta do usuário.
-- [ ] Solicitar com segurança STRIPE_SECRET_KEY e VITE_STRIPE_PUBLISHABLE_KEY, sem chave restrita.
+- [x] Receber com segurança as chaves pública e secreta da Stripe.
+- [x] Salvar STRIPE_SECRET_KEY e STRIPE_PUBLISHABLE_KEY, sem chave restrita.
